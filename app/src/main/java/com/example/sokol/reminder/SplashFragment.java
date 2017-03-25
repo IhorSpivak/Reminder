@@ -12,18 +12,23 @@ import android.view.ViewGroup;
 import java.util.concurrent.TimeUnit;
 
 
-public class SplashFragment extends Fragment  {
+public class SplashFragment extends android.app.Fragment {
+
+
+    public SplashFragment() {
+        // Required empty public constructor
+    }
 
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        // Inflate the layout for this fragment
 
-        SplashTask splashTask= new SplashTask();
+        SplashTask splashTask = new SplashTask();
         splashTask.execute();
 
         return inflater.inflate(R.layout.fragment_splash, container, false);
-
     }
 
     class SplashTask extends AsyncTask<Void, Void, Void> {
@@ -35,9 +40,11 @@ public class SplashFragment extends Fragment  {
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-            getActivity().getSupportFragmentManager().popBackStack();
-            return null;
 
+            getActivity().getFragmentManager().popBackStack();
+
+            return null;
         }
     }
+
 }
