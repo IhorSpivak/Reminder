@@ -14,7 +14,6 @@ import java.util.concurrent.TimeUnit;
 
 public class SplashFragment extends android.app.Fragment {
 
-
     public SplashFragment() {
         // Required empty public constructor
     }
@@ -41,7 +40,9 @@ public class SplashFragment extends android.app.Fragment {
                 e.printStackTrace();
             }
 
-            getActivity().getFragmentManager().popBackStack();
+            if (getActivity() != null) {
+                getActivity().getFragmentManager().popBackStack();
+            }
 
             return null;
         }

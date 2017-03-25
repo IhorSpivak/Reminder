@@ -4,10 +4,10 @@ xmlns:app="http://schemas.android.com/apk/res-auto"
 xmlns:tools="http://schemas.android.com/tools"
 tools:context="com.example.sokol.reminder.MainActivity">
 <item
+    app:showAsAction="never"
     android:id="@+id/action_splash"
     android:orderInCategory="100"
-    android:title="@string/dont_show_splash"
-    app:showAsAction="never"
+    android:title="dont_show_splash"
     android:checkable="true"/>
 </menu>
 
