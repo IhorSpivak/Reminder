@@ -16,14 +16,12 @@ import android.widget.Toast;
 import com.example.sokol.reminder.dialogs.AddingTaskDialog;
 import com.example.sokol.reminder.fragments.CurrentTaskFragment;
 import com.example.sokol.reminder.fragments.DoneTaskFragment;
+import com.example.sokol.reminder.fragments.SplashFragment;
 import com.example.sokol.reminder.model.ModelTask;
 
 public class MainActivity extends AppCompatActivity implements AddingTaskDialog.AddingTaskListener{
 
-    FragmentManager fragmentManager1;
-
-   android.app.FragmentManager fragmentManager;
-
+    android.app.FragmentManager fragmentManager;
 
     PreferenceHelper preferenceHelper;
     TabAdapter tabAdapter;
@@ -41,6 +39,7 @@ public class MainActivity extends AppCompatActivity implements AddingTaskDialog.
 
         fragmentManager = getFragmentManager();
 
+        runSplash();
 
         setUI();
     }
@@ -52,8 +51,34 @@ public class MainActivity extends AppCompatActivity implements AddingTaskDialog.
         MenuItem splashItem = menu.findItem(R.id.action_splash);
         splashItem.setChecked(preferenceHelper.getBoolean(PreferenceHelper.SPLASH_IS_INVISIBLE));
         return true;
+    }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
 
+        //noinspection SimplifiableIfStatement
+        if (id == R.id.action_splash) {
+            item.setChecked(!item.isChecked());
+            preferenceHelper.putBoolean(PreferenceHelper.SPLASH_IS_INVISIBLE, item.isChecked());
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
+    public void runSplash() {
+        if(!preferenceHelper.getBoolean(PreferenceHelper.SPLASH_IS_INVISIBLE)) {
+            SplashFragment splashFragment = new SplashFragment();
+
+            fragmentManager.beginTransaction()
+                    .replace(R.id.content_frame, splashFragment)
+                    .addToBackStack(null)
+                    .commit();
+        }
 
     }
 
@@ -70,7 +95,7 @@ public class MainActivity extends AppCompatActivity implements AddingTaskDialog.
         tabLayout.addTab(tabLayout.newTab().setText(R.string.done_task));
 
         final ViewPager viewPager = (ViewPager) findViewById(R.id.pager);
-        tabAdapter = new TabAdapter(fragmentManager1, 2);
+        tabAdapter = new TabAdapter(fragmentManager, 2);
 
         viewPager.setAdapter(tabAdapter);
         viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
@@ -103,7 +128,7 @@ public class MainActivity extends AppCompatActivity implements AddingTaskDialog.
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                DialogFragment addingTaskDialogFragment = new AddingTaskDialog();
+                DialogFragment addingTaskDialogFragment = new DialogFragment();
                 addingTaskDialogFragment.show(fragmentManager, "AddingTaskDialogFragment");
             }
         });
@@ -119,4 +144,5 @@ public class MainActivity extends AppCompatActivity implements AddingTaskDialog.
         Toast.makeText(this, "Task adding cancel", Toast.LENGTH_LONG).show();
 
     }
+
 }
