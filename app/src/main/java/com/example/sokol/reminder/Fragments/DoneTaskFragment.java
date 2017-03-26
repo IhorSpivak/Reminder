@@ -1,4 +1,4 @@
-package com.example.sokol.reminder.Fragments;
+package com.example.sokol.reminder.fragments;
 
 
 import android.os.Bundle;

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    android:background="?android:attr/selectableItemBackground"
+    android:clickable="true"
+    android:layout_height="56dp"
+    android:layout_width="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <TextView
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_toStartOf="@+id/tvTaskDate"
+        android:layout_toLeftOf="@+id/tvTaskDate"
+        android:text="Title"
+        android:layout_alignParentLeft="true"
+        android:layout_toRightOf="@+id/tvTaskDate"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="16dp"
+        android:textColor="@color/primary_text_default_material_light"
+        android:textSize="16sp"
+        android:id="@+id/tvTaskTitle"/>
+
+    <TextView android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:text="Date" android:textColor="@color/secondary_text_default_material_light"
+        android:textSize="14sp"
+        android:id="@+id/tvTaskDate"
+        android:layout_margin="16dp"
+        android:layout_alignParentRight="true"
+        android:gravity="right"/>
+
+</RelativeLayout>

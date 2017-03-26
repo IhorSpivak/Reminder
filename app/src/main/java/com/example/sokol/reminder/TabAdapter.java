@@ -1,11 +1,10 @@
 package com.example.sokol.reminder;
 
-import android.app.FragmentManager;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentStatePagerAdapter;
 
-import com.example.sokol.reminder.Fragments.CurrentTaskFragment;
-import com.example.sokol.reminder.Fragments.DoneTaskFragment;
+import com.example.sokol.reminder.fragments.CurrentTaskFragment;
+import com.example.sokol.reminder.fragments.DoneTaskFragment;
 
 /**
  * Created by Sokol on 25.03.2017.
