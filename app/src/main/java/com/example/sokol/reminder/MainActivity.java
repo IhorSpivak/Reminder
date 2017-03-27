@@ -20,8 +20,9 @@ import com.example.sokol.reminder.fragments.SplashFragment;
 import com.example.sokol.reminder.model.ModelTask;
 
 public class MainActivity extends AppCompatActivity implements AddingTaskDialog.AddingTaskListener{
+    android.app.FragmentManager fragmentManager1;
 
-    android.app.FragmentManager fragmentManager;
+    FragmentManager fragmentManager;
 
     PreferenceHelper preferenceHelper;
     TabAdapter tabAdapter;
@@ -37,7 +38,7 @@ public class MainActivity extends AppCompatActivity implements AddingTaskDialog.
         PreferenceHelper.getInstance().init(getApplicationContext());
         preferenceHelper = PreferenceHelper.getInstance();
 
-        fragmentManager = getFragmentManager();
+        fragmentManager = getSupportFragmentManager();
 
         runSplash();
 
@@ -55,12 +56,9 @@ public class MainActivity extends AppCompatActivity implements AddingTaskDialog.
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
+
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
         if (id == R.id.action_splash) {
             item.setChecked(!item.isChecked());
             preferenceHelper.putBoolean(PreferenceHelper.SPLASH_IS_INVISIBLE, item.isChecked());
@@ -115,21 +113,17 @@ public class MainActivity extends AppCompatActivity implements AddingTaskDialog.
             public void onTabReselected(TabLayout.Tab tab) {
 
             }
-
-
-
         });
 
         currentTaskFragment = (CurrentTaskFragment) tabAdapter.getItem(TabAdapter.CURRENT_TASK_FRAGMENT_POSITION);
         doneTaskFragment = (DoneTaskFragment) tabAdapter.getItem(TabAdapter.DONE_TASK_FRAGMENT_POSITION);
-
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 DialogFragment addingTaskDialogFragment = new DialogFragment();
-                addingTaskDialogFragment.show(fragmentManager, "AddingTaskDialogFragment");
+                addingTaskDialogFragment.show(fragmentManager1, "AddingTaskDialogFragment");
             }
         });
     }
