@@ -1,4 +1,4 @@
-package com.example.sokol.reminder;
+package com.example.sokol.reminder.adapter;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
