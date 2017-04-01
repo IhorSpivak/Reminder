@@ -6,7 +6,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
-<android.support.design.widget.CoordinatorLayout
+
+    -<android.support.design.widget.CoordinatorLayout
     android:layout_height="match_parent"
     android:layout_width="match_parent"
     android:id="@+id/coordinator"
@@ -19,16 +20,27 @@
         app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
 
 
-    -<android.support.design.widget.AppBarLayout
+    <android.support.design.widget.AppBarLayout
     android:layout_height="wrap_content"
-    android:layout_width="match_parent"
-    android:id="@+id/app_bar_layout">
+        android:layout_width="match_parent"
+        android:id="@+id/app_bar_layout">
+
 
     <android.support.v7.widget.Toolbar
         android:layout_height="?attr/actionBarSize"
         android:layout_width="match_parent"
         android:id="@+id/toolbar"
-        app:layout_scrollFlags="scroll|enterAlways"/>
+        app:layout_scrollFlags="scroll|enterAlways">
+
+    <android.support.v7.widget.SearchView
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:id="@+id/searchView"
+        app:searchIcon="@drawable/ic_search_white_24dp"
+        app:theme="@style/Theme.AppCompat.NoActionBar"
+        android:layout_gravity="right"/>
+
+</android.support.v7.widget.Toolbar>
 
     <android.support.design.widget.TabLayout
         android:layout_height="?attr/actionBarSize"

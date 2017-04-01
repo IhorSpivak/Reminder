@@ -11,6 +11,7 @@ import android.view.View;
 import com.example.sokol.reminder.MainActivity;
 import com.example.sokol.reminder.R;
 import com.example.sokol.reminder.adapter.TaskAdapter;
+import com.example.sokol.reminder.alarm.AlarmHelper;
 import com.example.sokol.reminder.model.Item;
 import com.example.sokol.reminder.model.ModelTask;
 
@@ -28,6 +29,8 @@ public abstract class TaskFragment extends Fragment {
 
     public MainActivity activity;
 
+    public AlarmHelper alarmHelper;
+
 
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
@@ -36,6 +39,8 @@ public abstract class TaskFragment extends Fragment {
         if (getActivity() != null) {
             activity = (MainActivity) getActivity();
         }
+
+        alarmHelper = AlarmHelper.getInstance();
 
         addTaskFromDB();
     }
@@ -103,7 +108,9 @@ public abstract class TaskFragment extends Fragment {
                         @Override
                         public void onViewDetachedFromWindow(View v) {
                             if (isRemoved[0]) {
+                                alarmHelper.removeAlarm(timeStamp);
                                 activity.dbHelper.removeTask(timeStamp);
+
                             }
                         }
                     });
@@ -128,6 +135,8 @@ public abstract class TaskFragment extends Fragment {
         dialogBuilder.show();
     }
 
+
+    public abstract void findTasks(String title);
 
     public abstract void addTaskFromDB();
 
