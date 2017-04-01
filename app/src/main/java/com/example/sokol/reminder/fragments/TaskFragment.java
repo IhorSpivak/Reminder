@@ -1,5 +1,6 @@
 package com.example.sokol.reminder.fragments;
 
+import android.app.DialogFragment;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
@@ -12,6 +13,7 @@ import com.example.sokol.reminder.MainActivity;
 import com.example.sokol.reminder.R;
 import com.example.sokol.reminder.adapter.TaskAdapter;
 import com.example.sokol.reminder.alarm.AlarmHelper;
+import com.example.sokol.reminder.dialogs.EditTaskDialogFragment;
 import com.example.sokol.reminder.model.Item;
 import com.example.sokol.reminder.model.ModelTask;
 
@@ -45,28 +47,10 @@ public abstract class TaskFragment extends Fragment {
         addTaskFromDB();
     }
 
-    public void addTask(ModelTask newTask, boolean saveToDB) {
-        int position = -1;
+    public abstract void addTask(ModelTask newTask, boolean saveToDB);
 
-        for (int i = 0; i < adapter.getItemCount(); i ++) {
-            if (adapter.getItem(i).isTask()) {
-                ModelTask task = (ModelTask) adapter.getItem(i);
-                if (newTask.getDate() < task.getDate()) {
-                    position = i;
-                    break;
-                }
-            }
-        }
-
-        if (position != -1) {
-            adapter.addItem(position, newTask);
-        } else {
-            adapter.addItem(newTask);
-        }
-
-        if (saveToDB) {
-            activity.dbHelper.saveTask(newTask);
-        }
+    public void updateTask(ModelTask task) {
+        adapter.updateTask(task);
     }
 
 
@@ -135,6 +119,11 @@ public abstract class TaskFragment extends Fragment {
         dialogBuilder.show();
     }
 
+    public void showTaskEditDialog(ModelTask task) {
+        DialogFragment editingTaskDialog = EditTaskDialogFragment.newInstance(task);
+        editingTaskDialog.show(getActivity().getFragmentManager(), "EditTaskDialogFragment");
+    }
+
 
     public abstract void findTasks(String title);
 
@@ -142,3 +131,4 @@ public abstract class TaskFragment extends Fragment {
 
     public abstract void moveTask(ModelTask task);
 }
+

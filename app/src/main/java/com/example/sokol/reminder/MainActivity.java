@@ -18,6 +18,7 @@ import com.example.sokol.reminder.adapter.TabAdapter;
 import com.example.sokol.reminder.alarm.AlarmHelper;
 import com.example.sokol.reminder.database.DBHelper;
 import com.example.sokol.reminder.dialogs.AddingTaskDialogFragment;
+import com.example.sokol.reminder.dialogs.EditTaskDialogFragment;
 import com.example.sokol.reminder.fragments.CurrentTaskFragment;
 import com.example.sokol.reminder.fragments.DoneTaskFragment;
 import com.example.sokol.reminder.fragments.SplashFragment;
@@ -26,7 +27,8 @@ import com.example.sokol.reminder.model.ModelTask;
 
 public class MainActivity extends AppCompatActivity
         implements AddingTaskDialogFragment.AddingTaskListener,
-        CurrentTaskFragment.OnTaskDoneListener, DoneTaskFragment.OnTaskRestoreListener {
+        CurrentTaskFragment.OnTaskDoneListener, DoneTaskFragment.OnTaskRestoreListener,
+        EditTaskDialogFragment.EditingTaskListener {
 
     FragmentManager fragmentManager;
 
@@ -196,5 +198,11 @@ public class MainActivity extends AppCompatActivity
     @Override
     public void onTaskRestore(ModelTask task) {
         currentTaskFragment.addTask(task, false);
+    }
+
+    @Override
+    public void onTaskEdited(ModelTask updatedTask) {
+        currentTaskFragment.updateTask(updatedTask);
+        dbHelper.update().task(updatedTask);
     }
 }
