@@ -72,6 +72,7 @@ public class CurrentTaskFragment extends TaskFragment {
 
     @Override
     public void findTasks(String title) {
+        checkAdapter();
         adapter.removeAllItems();
         List<ModelTask> tasks = new ArrayList<>();
         tasks.addAll(activity.dbHelper.query().getTasks(DBHelper.SELECTION_LIKE_TITLE + " AND "
@@ -84,7 +85,16 @@ public class CurrentTaskFragment extends TaskFragment {
     }
 
     @Override
+    public void checkAdapter() {
+        if (adapter == null) {
+            adapter = new CurrentTasksAdapter(this);
+            addTaskFromDB();
+        }
+    }
+
+    @Override
     public void addTaskFromDB() {
+        checkAdapter();
         adapter.removeAllItems();
         List<ModelTask> tasks = new ArrayList<>();
         tasks.addAll(activity.dbHelper.query().getTasks(DBHelper.SELECTION_STATUS + " OR "
@@ -100,6 +110,7 @@ public class CurrentTaskFragment extends TaskFragment {
     public void addTask(ModelTask newTask, boolean saveToDB) {
         int position = -1;
         ModelSeparator separator = null;
+        checkAdapter();
 
         for (int i = 0; i < adapter.getItemCount(); i ++) {
             if (adapter.getItem(i).isTask()) {

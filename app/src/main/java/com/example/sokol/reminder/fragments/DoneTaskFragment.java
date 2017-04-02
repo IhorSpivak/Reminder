@@ -69,6 +69,7 @@ public class DoneTaskFragment extends TaskFragment {
 
     @Override
     public void findTasks(String title) {
+        checkAdapter();
         adapter.removeAllItems();
         List<ModelTask> tasks = new ArrayList<>();
         tasks.addAll(activity.dbHelper.query().getTasks(DBHelper.SELECTION_LIKE_TITLE + " AND "
@@ -80,7 +81,16 @@ public class DoneTaskFragment extends TaskFragment {
     }
 
     @Override
+    public void checkAdapter() {
+        if (adapter == null) {
+            adapter = new DoneTasksAdapter(this);
+            addTaskFromDB();
+        }
+    }
+
+    @Override
     public void addTaskFromDB() {
+        checkAdapter();
         adapter.removeAllItems();
         List<ModelTask> tasks = new ArrayList<>();
         tasks.addAll(activity.dbHelper.query().getTasks(DBHelper.SELECTION_STATUS,
@@ -94,6 +104,7 @@ public class DoneTaskFragment extends TaskFragment {
     @Override
     public void addTask(ModelTask newTask, boolean saveToDB) {
         int position = -1;
+        checkAdapter();
 
         for (int i = 0; i < adapter.getItemCount(); i ++) {
             if (adapter.getItem(i).isTask()) {
@@ -115,6 +126,8 @@ public class DoneTaskFragment extends TaskFragment {
             activity.dbHelper.saveTask(newTask);
         }
     }
+
+
 
 
     @Override
