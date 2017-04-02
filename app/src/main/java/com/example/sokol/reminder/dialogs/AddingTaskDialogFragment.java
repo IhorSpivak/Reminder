@@ -26,12 +26,17 @@ import com.example.sokol.reminder.alarm.AlarmHelper;
 import com.example.sokol.reminder.model.ModelTask;
 
 /**
- * Created by Sokol on 26.03.2017.
+ * Created by Sokol on 26.03.2017
  */
 
 public class AddingTaskDialogFragment extends DialogFragment {
 
     private AddingTaskListener addingTaskListener;
+    private static EditText etDate;
+    private static EditText etTime;
+
+    public AddingTaskDialogFragment() {
+    }
 
     public interface AddingTaskListener {
         void onTaskAdded(ModelTask newTask);
@@ -63,10 +68,10 @@ public class AddingTaskDialogFragment extends DialogFragment {
         final EditText etTitle = tilTitle.getEditText();
 
         TextInputLayout tilDate = (TextInputLayout) container.findViewById(R.id.tilDialogTaskDate);
-        final EditText etDate = tilDate.getEditText();
+        etDate = tilDate.getEditText();
 
         final TextInputLayout tilTime = (TextInputLayout) container.findViewById(R.id.tilDialogTaskTime);
-        final EditText etTime = tilTime.getEditText();
+        etTime = tilTime.getEditText();
 
         Spinner spPriority = (Spinner) container.findViewById(R.id.spDialogTaskPriority);
 
@@ -105,21 +110,8 @@ public class AddingTaskDialogFragment extends DialogFragment {
                     etDate.setText(" ");
                 }
 
-                DialogFragment datePickerFragment = new DatePickerFragment() {
-                    @Override
-                    public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
-                        calendar.set(Calendar.YEAR, year);
-                        calendar.set(Calendar.MONTH, monthOfYear);
-                        calendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
-                        etDate.setText(Utils.getDate(calendar.getTimeInMillis()));
-                    }
-
-                    @Override
-                    public void onCancel(DialogInterface dialog) {
-                        etDate.setText(null);
-                    }
-                };
-                datePickerFragment.show(getFragmentManager(), "DatePickerFragment");
+                DialogFragment dialogFragment = new AddTaskDatePickerFragment();
+                dialogFragment.show(getFragmentManager(), "DatePickerFragment");
             }
         });
 
@@ -129,20 +121,7 @@ public class AddingTaskDialogFragment extends DialogFragment {
                 if (etTime.length() == 0) {
                     etTime.setText(" ");
                 }
-                DialogFragment timePickerFragment = new TimePickerFragment() {
-                    @Override
-                    public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-                        calendar.set(Calendar.HOUR_OF_DAY, hourOfDay);
-                        calendar.set(Calendar.MINUTE, minute);
-                        calendar.set(Calendar.SECOND, 0);
-                        etTime.setText(Utils.getTime(calendar.getTimeInMillis()));
-                    }
-
-                    @Override
-                    public void onCancel(DialogInterface dialog) {
-                        etTime.setText(null);
-                    }
-                };
+                DialogFragment timePickerFragment = new AddTaskTimePickerFragment();
                 timePickerFragment.show(getFragmentManager(), "TimePickerFragment");
             }
         });
@@ -207,6 +186,40 @@ public class AddingTaskDialogFragment extends DialogFragment {
             }
         });
         return alertDialog;
+    }
+
+    public static class AddTaskDatePickerFragment extends com.example.sokol.reminder.dialogs.DatePickerFragment {
+
+        final Calendar calendar = Calendar.getInstance();
+        @Override
+        public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+            calendar.set(Calendar.YEAR, year);
+            calendar.set(Calendar.MONTH, monthOfYear);
+            calendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+            etDate.setText(Utils.getDate(calendar.getTimeInMillis()));
+        }
+
+        @Override
+        public void onCancel(DialogInterface dialog) {
+            etDate.setText(null);
+        }
+    }
+
+    public static class AddTaskTimePickerFragment extends com.example.sokol.reminder.dialogs.TimePickerFragment {
+
+        final Calendar calendar = Calendar.getInstance();
+        @Override
+        public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+            calendar.set(Calendar.HOUR_OF_DAY, hourOfDay);
+            calendar.set(Calendar.MINUTE, minute);
+            calendar.set(Calendar.SECOND, 0);
+            etTime.setText(Utils.getTime(calendar.getTimeInMillis()));
+        }
+
+        @Override
+        public void onCancel(DialogInterface dialog) {
+            etTime.setText(null);
+        }
     }
 }
 
