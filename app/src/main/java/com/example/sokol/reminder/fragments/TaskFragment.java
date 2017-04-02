@@ -1,9 +1,9 @@
 package com.example.sokol.reminder.fragments;
 
-import android.app.DialogFragment;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.RecyclerView;
@@ -114,7 +114,7 @@ public abstract class TaskFragment extends Fragment {
 
     public void showTaskEditDialog(ModelTask task) {
         DialogFragment editingTaskDialog = EditTaskDialogFragment.newInstance(task);
-        editingTaskDialog.show(getActivity().getFragmentManager(), "EditTaskDialogFragment");
+        editingTaskDialog.show(getActivity().getSupportFragmentManager(), "EditTaskDialogFragment");
     }
 
     public abstract void findTasks(String title);
