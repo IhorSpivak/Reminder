@@ -27,17 +27,12 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 public class CurrentTasksAdapter extends TaskAdapter {
 
-
-
     private static final int TYPE_TASK = 0;
     private static final int TYPE_SEPARATOR = 1;
 
     public CurrentTasksAdapter(CurrentTaskFragment taskFragment) {
         super(taskFragment);
     }
-
-
-
 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int viewType) {
@@ -75,7 +70,6 @@ public class CurrentTasksAdapter extends TaskAdapter {
 
             final View itemView = taskViewHolder.itemView;
 
-
             taskViewHolder.title.setText(task.getTitle());
             if (task.getDate() != 0) {
                 taskViewHolder.date.setText(Utils.getFullDate(task.getDate()));
@@ -91,8 +85,6 @@ public class CurrentTasksAdapter extends TaskAdapter {
             } else {
                 itemView.setBackgroundColor(resources.getColor(R.color.gray_50));
             }
-
-
 
             taskViewHolder.title.setTextColor(resources.getColor(R.color.primary_text_default_material_light));
             taskViewHolder.date.setTextColor(resources.getColor(R.color.secondary_text_default_material_light));
@@ -127,7 +119,6 @@ public class CurrentTasksAdapter extends TaskAdapter {
                     taskViewHolder.priority.setEnabled(false);
                     task.setStatus(ModelTask.STATUS_DONE);
                     getTaskFragment().activity.dbHelper.update().status(task.getTimeStamp(), ModelTask.STATUS_DONE);
-
 
                     taskViewHolder.title.setTextColor(resources.getColor(R.color.primary_text_disabled_material_light));
                     taskViewHolder.date.setTextColor(resources.getColor(R.color.secondary_text_disabled_material_light));
@@ -197,11 +188,9 @@ public class CurrentTasksAdapter extends TaskAdapter {
 
                     flipIn.start();
 
-
                 }
             });
         } else {
-
             ModelSeparator separator = (ModelSeparator) item;
             SeparatorViewHolder separatorViewHolder = (SeparatorViewHolder) viewHolder;
 
@@ -209,8 +198,6 @@ public class CurrentTasksAdapter extends TaskAdapter {
         }
 
     }
-
-
 
     @Override
     public int getItemViewType(int position) {
@@ -220,6 +207,4 @@ public class CurrentTasksAdapter extends TaskAdapter {
             return TYPE_SEPARATOR;
         }
     }
-
-
 }

@@ -25,14 +25,12 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 public class DoneTasksAdapter extends TaskAdapter {
 
-
     public DoneTasksAdapter(DoneTaskFragment taskFragment) {
         super(taskFragment);
     }
 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int viewType) {
-
 
         View v = LayoutInflater.from(viewGroup.getContext())
                 .inflate(R.layout.model_task, viewGroup, false);
@@ -41,8 +39,6 @@ public class DoneTasksAdapter extends TaskAdapter {
         CircleImageView priority = (CircleImageView) v.findViewById(R.id.cvTaskPriority);
 
         return new TaskViewHolder(v, title, date, priority);
-
-
     }
 
     @Override
@@ -66,7 +62,6 @@ public class DoneTasksAdapter extends TaskAdapter {
 
             itemView.setVisibility(View.VISIBLE);
             taskViewHolder.priority.setEnabled(true);
-
 
             taskViewHolder.title.setTextColor(resources.getColor(R.color.primary_text_disabled_material_light));
             taskViewHolder.date.setTextColor(resources.getColor(R.color.secondary_text_disabled_material_light));
@@ -118,7 +113,6 @@ public class DoneTasksAdapter extends TaskAdapter {
                                 ObjectAnimator translationXBack = ObjectAnimator.ofFloat(itemView,
                                         "translationX", -itemView.getWidth(), 0f);
 
-
                                 translationX.addListener(new Animator.AnimatorListener() {
                                     @Override
                                     public void onAnimationStart(Animator animation) {
@@ -162,8 +156,6 @@ public class DoneTasksAdapter extends TaskAdapter {
                     });
 
                     flipIn.start();
-
-
                 }
             });
         }

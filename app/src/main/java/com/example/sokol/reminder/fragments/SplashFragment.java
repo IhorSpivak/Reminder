@@ -17,17 +17,13 @@ import java.util.concurrent.TimeUnit;
 
 public class SplashFragment extends Fragment {
 
-
     public SplashFragment() {
-        // Required empty public constructor
-    }
 
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-
         SplashTask splashTask = new SplashTask();
         splashTask.execute();
 
@@ -43,15 +39,11 @@ public class SplashFragment extends Fragment {
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-
             if (getActivity() != null) {
                 getActivity().getFragmentManager().popBackStack();
             }
-
             return null;
         }
     }
-
-
 }
 

@@ -27,9 +27,6 @@ public class TabAdapter extends FragmentStatePagerAdapter {
         doneTaskFragment = new DoneTaskFragment();
     }
 
-
-
-
     @Override
     public Fragment getItem(int i) {
 

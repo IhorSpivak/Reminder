@@ -10,7 +10,6 @@ import java.util.Date;
 
 public class ModelTask implements Item{
 
-
     public static final int PRIORITY_LOW = 0;
     public static final int PRIORITY_NORMAL = 1;
     public static final int PRIORITY_HIGH = 2;
@@ -20,7 +19,6 @@ public class ModelTask implements Item{
     public static final int STATUS_OVERDUE = 0;
     public static final int STATUS_CURRENT = 1;
     public static final int STATUS_DONE = 2;
-
 
     private String title;
     private long date;
@@ -41,7 +39,6 @@ public class ModelTask implements Item{
         this.status = status;
         this.timeStamp = timeStamp;
     }
-
 
     public int getPriorityColor() {
         switch (getPriority()) {
@@ -69,12 +66,10 @@ public class ModelTask implements Item{
         }
     }
 
-
     @Override
     public boolean isTask() {
         return true;
     }
-
 
     public String getTitle() {
         return title;

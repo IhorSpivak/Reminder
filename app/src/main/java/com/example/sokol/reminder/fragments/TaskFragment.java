@@ -33,7 +33,6 @@ public abstract class TaskFragment extends Fragment {
 
     public AlarmHelper alarmHelper;
 
-
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
@@ -41,7 +40,6 @@ public abstract class TaskFragment extends Fragment {
         if (getActivity() != null) {
             activity = (MainActivity) getActivity();
         }
-
         alarmHelper = AlarmHelper.getInstance();
 
         addTaskFromDB();
@@ -52,7 +50,6 @@ public abstract class TaskFragment extends Fragment {
     public void updateTask(ModelTask task) {
         adapter.updateTask(task);
     }
-
 
     public void removeTaskDialog(final int location) {
         AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(getActivity());
@@ -101,9 +98,7 @@ public abstract class TaskFragment extends Fragment {
 
                     snackbar.show();
 
-
                     dialog.dismiss();
-
                 }
             });
 
@@ -113,9 +108,7 @@ public abstract class TaskFragment extends Fragment {
                     dialog.cancel();
                 }
             });
-
         }
-
         dialogBuilder.show();
     }
 
@@ -123,7 +116,6 @@ public abstract class TaskFragment extends Fragment {
         DialogFragment editingTaskDialog = EditTaskDialogFragment.newInstance(task);
         editingTaskDialog.show(getActivity().getFragmentManager(), "EditTaskDialogFragment");
     }
-
 
     public abstract void findTasks(String title);
 

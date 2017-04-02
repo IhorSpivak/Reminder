@@ -49,6 +49,4 @@ public class AlarmHelper {
 
         alarmManager.cancel(pendingIntent);
     }
-
-
 }

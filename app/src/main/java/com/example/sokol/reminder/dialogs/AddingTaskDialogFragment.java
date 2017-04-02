@@ -70,7 +70,6 @@ public class AddingTaskDialogFragment extends DialogFragment {
 
         Spinner spPriority = (Spinner) container.findViewById(R.id.spDialogTaskPriority);
 
-
         tilTitle.setHint(getResources().getString(R.string.task_title));
         tilDate.setHint(getResources().getString(R.string.task_date));
         tilTime.setHint(getResources().getString(R.string.task_time));
@@ -78,7 +77,6 @@ public class AddingTaskDialogFragment extends DialogFragment {
         builder.setView(container);
 
         final ModelTask task = new ModelTask();
-
 
         ArrayAdapter<String> priorityAdapter = new ArrayAdapter<String>(getActivity(),
                 android.R.layout.simple_spinner_dropdown_item, ModelTask.PRIORITY_LEVELS);
@@ -208,7 +206,6 @@ public class AddingTaskDialogFragment extends DialogFragment {
                 });
             }
         });
-
         return alertDialog;
     }
 }

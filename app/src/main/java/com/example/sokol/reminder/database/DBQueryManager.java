@@ -20,7 +20,6 @@ public class DBQueryManager {
         this.database = database;
     }
 
-
     public ModelTask getTask(long timeStamp) {
         ModelTask modelTask = null;
         Cursor cursor = database.query(DBHelper.TASKS_TABLE, null, DBHelper.SELECTION_TIME_STAMP,
@@ -37,9 +36,7 @@ public class DBQueryManager {
         cursor.close();
 
         return modelTask;
-
     }
-
 
     public List<ModelTask> getTasks(String selection, String[] selectionArgs, String orderBy) {
         List<ModelTask> tasks = new ArrayList<>();

@@ -11,7 +11,6 @@ import com.example.sokol.reminder.model.ModelTask;
 
 public class DBUpdateManager {
 
-
     SQLiteDatabase database;
 
     DBUpdateManager(SQLiteDatabase database) {
@@ -41,7 +40,6 @@ public class DBUpdateManager {
         status(task.getTimeStamp(), task.getStatus());
     }
 
-
     private void update(String column, long key, String value) {
         ContentValues cv = new ContentValues();
         cv.put(column, value);
@@ -53,5 +51,4 @@ public class DBUpdateManager {
         cv.put(column, value);
         database.update(DBHelper.TASKS_TABLE, cv, DBHelper.TASK_TIME_STAMP_COLUMN + " = " + key, null);
     }
-
 }

@@ -90,7 +90,6 @@ public class EditTaskDialogFragment extends DialogFragment {
 
         Spinner spPriority = (Spinner) container.findViewById(R.id.spDialogTaskPriority);
 
-
         etTitle.setText(task.getTitle());
         etTitle.setSelection(etTitle.length());
         if (task.getDate() != 0) {
@@ -98,14 +97,11 @@ public class EditTaskDialogFragment extends DialogFragment {
             etTime.setText(Utils.getTime(task.getDate()));
         }
 
-
         tilTitle.setHint(getResources().getString(R.string.task_title));
         tilDate.setHint(getResources().getString(R.string.task_date));
         tilTime.setHint(getResources().getString(R.string.task_time));
 
         builder.setView(container);
-
-
 
         ArrayAdapter<String> priorityAdapter = new ArrayAdapter<String>(getActivity(),
                 android.R.layout.simple_spinner_dropdown_item, ModelTask.PRIORITY_LEVELS);
@@ -239,7 +235,6 @@ public class EditTaskDialogFragment extends DialogFragment {
                 });
             }
         });
-
         return alertDialog;
     }
 }
