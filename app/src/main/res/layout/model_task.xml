@@ -33,14 +33,23 @@
         android:layout_margin="16dp"
         android:layout_alignParentRight="true"/>
 
-    <de.hdodenhof.circleimageview.CircleImageView
-        android:layout_height="40dp"
-        android:layout_width="40dp"
-        android:layout_marginBottom="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginLeft="16dp"
-        android:id="@+id/cvTaskPriority"
-        android:src="@color/colorPrimary"/>
+    <!--<de.hdodenhof.circleimageview.CircleImageView-->
+        <!--android:layout_height="40dp"-->
+        <!--android:layout_width="40dp"-->
+        <!--android:layout_marginBottom="8dp"-->
+        <!--android:layout_marginTop="8dp"-->
+        <!--android:layout_marginLeft="16dp"-->
+        <!--android:id="@+id/cvTaskPriority"-->
+        <!--android:src="@color/colorPrimary"/>-->
+
+        <ImageView
+            android:layout_height="40dp"
+            android:layout_width="40dp"
+            android:layout_marginBottom="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginLeft="16dp"
+            android:id="@+id/cvTaskPriority"
+            android:src="@drawable/circle"/>
 
 </RelativeLayout>
 

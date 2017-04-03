@@ -2,6 +2,7 @@ package com.example.sokol.reminder.adapter;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.sokol.reminder.fragments.TaskFragment;
@@ -117,9 +118,10 @@ public abstract class TaskAdapter extends RecyclerView.Adapter<RecyclerView.View
     protected class TaskViewHolder extends RecyclerView.ViewHolder {
         protected TextView title;
         protected TextView date;
-        protected CircleImageView priority;
+//        protected CircleImageView priority;
+        protected ImageView priority;
 
-        public TaskViewHolder(View itemView, TextView title, TextView date, CircleImageView priority) {
+        public TaskViewHolder(View itemView, TextView title, TextView date, ImageView priority) {
             super(itemView);
             this.title = title;
             this.date = date;

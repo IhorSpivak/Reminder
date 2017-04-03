@@ -9,6 +9,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.sokol.reminder.R;
@@ -36,7 +37,8 @@ public class DoneTasksAdapter extends TaskAdapter {
                 .inflate(R.layout.model_task, viewGroup, false);
         TextView title = (TextView) v.findViewById(R.id.tvTaskTitle);
         TextView date = (TextView) v.findViewById(R.id.tvTaskDate);
-        CircleImageView priority = (CircleImageView) v.findViewById(R.id.cvTaskPriority);
+//        CircleImageView priority = (CircleImageView) v.findViewById(R.id.cvTaskPriority);
+        ImageView priority = (ImageView) v.findViewById(R.id.cvTaskPriority);
 
         return new TaskViewHolder(v, title, date, priority);
     }
@@ -65,8 +67,9 @@ public class DoneTasksAdapter extends TaskAdapter {
 
             taskViewHolder.title.setTextColor(resources.getColor(R.color.primary_text_disabled_material_light));
             taskViewHolder.date.setTextColor(resources.getColor(R.color.secondary_text_disabled_material_light));
+//            taskViewHolder.priority.setColorFilter(resources.getColor(task.getPriorityColor()));
+//            taskViewHolder.priority.setImageResource(R.drawable.ic_check_circle_white_48dp);
             taskViewHolder.priority.setColorFilter(resources.getColor(task.getPriorityColor()));
-            taskViewHolder.priority.setImageResource(R.drawable.ic_check_circle_white_48dp);
 
             itemView.setOnLongClickListener(new View.OnLongClickListener() {
                 @Override
